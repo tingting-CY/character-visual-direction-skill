@@ -160,6 +160,89 @@
 
 **注意**：一个页面只允许 P1 使用出血或强透视；小格保持简单、清晰、水平，避免全页“每格都在吼叫”。
 
+## 主角破格与越框（Panel Break）
+
+**破格 / 越框**是指角色的头部、手臂、武器、披风或身体局部有意识地穿过其所属画格的边框和 `gutter`，形成前景层级与爆发感。它不是删除所有格线，也不是多画一个独立人物；其本质是“**一个来自某格的连续主体，暂时覆盖格线**”。
+
+### 何时使用
+
+| 叙事时刻 | 适合的突破部位 | 建议布局 |
+|---|---|---|
+| 角色做出决定或突然转身 | 头部、肩膀、前手 | `L01` P2 或 `L03` P3 |
+| 冲刺、攻击、抓取或救援 | 手臂、腿、武器、披风尾部 | `L01` P2、`L04` P1 |
+| 角色压迫感或登场 | 头部、上半身跨出上边框 | `L02` P1、`L04` P1 |
+| 物件触发或信息爆发 | 手持物、信号、光束的小范围越框 | `L01` P3、`L03` P1 |
+| 页面高潮或翻页钩子 | 角色身体或武器的一部分突破外页边缘 | `L04` P1；仅限页末或海报式页面 |
+
+不要把破格用在基准角色图、服装设定图、平静对话或每一个动作场景。它应标记一个真正的动作、选择或情绪高点。
+
+### 突破幅度与层级
+
+| 级别 | 覆盖范围 | 适用效果 | 约束 |
+|---|---|---|---|
+| 微破格 | 手指、发梢、披风角跨过边框并进入 `gutter` 的约 `5–10%` | 轻微不安、速度、细小情绪 | 不遮挡邻格焦点；适合连续页中的小强调 |
+| 中破格 | 手臂、头肩、武器的一部分进入 `gutter` 并覆盖邻格边缘约 `10–20%` | 决定、转身、攻击、强反应 | 一页只用一次；需清楚标明来自哪一格 |
+| 大破格 | 上半身、前景武器或动态披风跨出格线，局部突破页面外边缘 | 登场、爆发、翻页钩子 | 仅限最大动作格；其他三格保持稳定 |
+
+默认使用**中破格**。让角色的脸或核心动作仍主要属于起源格，只有最有方向性的部位越框；这样既能产生前景冲击，也不会让读者失去“该角色正在这一格发生什么”的判断。
+
+### 设计规则
+
+1. **指定起源格**：明确写“从 P2 突破”或“从 P1 突破”。越框对象只能来自一个画格，不能在两个格中复制同一角色。
+2. **只突破一个元素**：一个页面最多一次越框；选择头肩、前手、武器或披风中的一项主元素，不让四肢、道具、粒子同时跨格。
+3. **沿阅读方向突破**：默认左→右阅读时，越框动作优先向右或向下推进；需要“逆流、阻挡、回头”时才向左突破，并让剧情解释这种逆向感。
+4. **保留格线结构**：边框应在越框对象后方可见，`gutter` 仍能被识别；越框不是把两个格合并成一幅大图。
+5. **保护邻格焦点**：被覆盖的邻格最多损失边缘 `10–20%`，其物件、眼神或叙事信息必须保持可读。
+6. **保持光线连续**：越框部分的光线、色温、材质与起源格完全一致；不要让跨出的手臂突然使用邻格的光源。
+7. **限制外页出血**：只有页面高潮才让主体突破画布外边缘；普通四格优先突破内部格线和 `gutter`。
+
+### 原生生成 Prompt 写法
+
+在原生单页 Prompt 的全局布局描述后加入以下句式，并替换方括号：
+
+```text
+Use one deliberate panel-break effect only: [起源格] contains the [角色部位 / 道具], which crosses its [方向] panel border, extends through the white gutter, and overlaps only the [邻格] edge by approximately [10–20%]. The panel border remains visibly behind the crossing element; [邻格] remains fully readable. This is one continuous character, not a duplicate and not an extra panel.
+```
+
+可搭配的避免项：
+
+```text
+no extra panels, no duplicated character, no disconnected floating limbs, no merged panels, no broken reading order, no cluttered overlapping objects
+```
+
+### 逐格拼版做法（推荐）
+
+高要求交付时，将破格视为额外的前景图层，而不是要求单张图一次完成：
+
+1. 按选定布局生成 P1–P4 的基础画面，先不绘制边框和气泡。
+2. 单独生成或从起源格提取“越框主体”，例如角色的前手、头肩或武器；保持同一角色参考、镜头、光线和动作连续性。
+3. 在排版工具中先放置四个基础画面与 `gutter`，再将越框主体置于格线之上、对白和 UI 文字之下。
+4. 只允许越框主体覆盖一个相邻格的边缘；检查邻格的叙事锚点和阅读方向仍然清楚。
+5. 最后添加气泡和字幕，避免文字压在越框主体的脸部、手部或动作路径上。
+
+这种方法比原生单页生成更适合需要精确格线、可编辑文字、角色一致性和多轮修改的团队生产。
+
+### C04：L01 锚点瀑布式——主角突破 P2 格线
+
+**页级事件**：快递员在雨夜站台看到紧急信号，从 P2 的行动格冲出，前手越过格线进入 P3 的信息格。
+
+```text
+A single vertical 4:5 comic page, exactly four distinct bordered panels, L01 anchor-cascade layout: one wide top panel, one tall lower-left panel, and two smaller stacked panels on the lower right. Asymmetrical layout with uneven panel sizes, not a 2 by 2 grid, clean white gutters and consistent thin panel borders.
+
+All four panels feature the same 27-year-old East Asian female courier with a short black bob, a small silver hair clip on the left side, amber eyes, a dark navy cropped courier jacket with reflective seams, an orange messenger bag, black cargo trousers, worn boots, and a vintage communication watch on her left wrist. Keep her facial identity, costume, rainy-night teal-and-amber semi-realistic cinematic science-fiction concept-art style, and lighting direction consistent across all panels.
+
+Panel 1, wide top establishing panel: eye-level medium-wide shot, 35mm lens. She stands on a rain-wet elevated transit platform beneath one cool cyan station light; only blurred rails appear in the background.
+Panel 2, tall lower-left action panel: knee-level camera, upward tilt around 15 degrees, three-quarter view, 24mm lens. She launches forward from the wet platform, one boot pushing off the ground, messenger bag and jacket trailing behind her.
+Panel 3, small upper-right detail panel: 85mm close-up of the communication watch with an abstract red emergency signal, no readable text.
+Panel 4, small lower-right reaction panel: 85mm close-up portrait, controlled urgency in her eyes, looking toward the arriving train.
+
+Use one deliberate panel-break effect only: Panel 2 contains the courier's extended right arm and hand, which cross Panel 2's upper-right border, extend through the white gutter, and overlap only the lower-left edge of Panel 3 by approximately 15%. The Panel 2 border remains visibly behind the arm; Panel 3's emergency signal remains fully readable. This is one continuous courier, not a duplicate and not an extra panel.
+
+Cool cyan key light from the left, restrained amber train rim light from behind, wet pavement reflections and physically consistent contact shadows. Clear reading order from panel 1 to panel 4. No text, no speech bubbles, no captions, no watermark, no extra panels, no 2 by 2 grid, no duplicated character, no disconnected floating limbs, no merged panels.
+```
+
+**验收**：P2 是越框起源，前手以一条连续动作线进入 P3；P3 的通信器仍可读，P4 不被遮挡；页面仍然是明确的四格而不是“P2 与 P3 合并的一张大图”。
+
 ## 镜头递进模板
 
 非均分布局不会自动带来叙事性。为每个布局先安排镜头节奏：
