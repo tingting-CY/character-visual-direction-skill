@@ -156,26 +156,47 @@ description: 为原创角色、角色设定图、同角色多场景变体、角�
 
 将下列内容作为可选模块。根据画风和平台能力采用自然语言、中文提示词、英文提示词或两者组合；不要为了使用英文而牺牲清晰含义。
 
-### A. 镜头、机位与视角
+### A. 摄影镜头、机位与视角控制
 
-| 创作意图 | 选择 | 可用表达 | 注意事项 |
+用一组可解释的摄影参数选择镜头，而非堆叠 `cinematic`、`dynamic`、`wide-angle` 等泛化词。以全画幅等效焦段为基准；**相机距离主要决定透视夸张程度，焦段主要决定取景范围与背景压缩感**。
+
+| 参数 | 基准与推荐范围 | 视觉作用 | 可用表达 |
 |---|---|---|---|
-| 稳定展示角色 | 平视、中景、正面或三分之四侧 | `eye-level shot`, `medium shot`, `three-quarter view` | 适合基准图、设定图和服装展示 |
-| 表现力量或压迫 | 微仰视、低机位、全身或中景 | `slightly low angle`, `low-angle shot`, `looking powerful` | 保持轻度透视，避免头部和脚部失真 |
-| 表现脆弱或孤独 | 俯视、远景、角色较小 | `high-angle shot`, `character small in frame`, `negative space` | 用留白而非过多悲伤元素传递孤立感 |
-| 表现宏大或敬畏 | 虫眼、低机位、前景压迫 | `worm's-eye view`, `towering perspective`, `dramatic scale` | 适合主视觉；不适合服装结构展示 |
-| 表现紧张和失衡 | 荷兰角、对角线构图 | `Dutch angle`, `tilted camera`, `dynamic diagonal composition` | 只作为主要镜头手法之一，避免与三视图混用 |
-| 表现攻击、速度或威胁 | 透视缩短、前肢/物体靠近镜头 | `extreme foreshortening`, `forced perspective`, `reaching toward the camera` | 优先使用清楚的动作主线，检查肢体比例 |
-| 表现荒诞、惊恐或夸张 | 鱼眼、超广角近景 | `fisheye lens`, `extreme wide-angle`, `distorted perspective` | 只用于明确需要的单张变体，不用作默认镜头 |
-| 表现神秘或离别 | 背影、剪影、越肩 | `back view`, `silhouette against bright light`, `over-the-shoulder shot` | 保留轮廓、发型和服装标志物，避免角色失去辨识度 |
-| 表现亲密心理状态 | 特写、浅景深、微小表情 | `close-up portrait`, `shallow depth of field`, `subtle expression` | 只让眼睛、手或道具中一个承担叙事焦点 |
+| 景别 | 全身 / 中景 / 半身 / 特写 | 决定角色、环境和表情的信息比例 | `full-body shot`, `medium shot`, `close-up` |
+| 相机高度 | 膝部 `0.4–0.6H`；眼平 `1.0H`；高于头部 `>1.2H` | 决定权力感、亲近感或脆弱感 | `knee-level camera`, `eye-level camera`, `camera above the subject` |
+| 俯仰 Pitch | 水平 `0°`；向上 `5–30°`；向下 `10–45°`；顶视 `60–90°` | 控制仰视、俯视和尺度感 | `upward tilt around 20 degrees`, `looking down at 25 degrees` |
+| 水平转角 Yaw | 正面 `0°`；三分之四 `30–45°`；侧面 `90°`；背面 `180°` | 决定五官可读性、轮廓和叙事距离 | `front view`, `three-quarter view`, `profile view`, `back view` |
+| 滚转 Roll | 水平 `0°`；轻倾 `3–7°`；荷兰角 `8–15°` | 控制稳定感与失衡感 | `camera roll 0 degrees`, `subtle tilt`, `Dutch angle` |
+| 距离与焦段 | 先定相机距离，再选全画幅等效 `14–135mm` | 共同决定透视、环境信息与背景压缩 | `camera close to the leading hand, 18mm lens` |
 
-不要将下列相互竞争的镜头要求放入同一单图提示词：
+按“景别 → 高度与 Pitch → Yaw → Roll → 距离与焦段”的顺序选镜头。单图只采用一个主要机位方案；将角度范围与专业镜头词共同写出，不要只给一个数字。
 
-- 三视图 / 正交展示 与 鱼眼 / 极端广角。
-- 鸟瞰全景 与 微距脸部特写。
-- 平视稳定肖像 与 强荷兰角，除非任务明确需要轻微倾斜。
-- 全身动作设计 与 被大量前景或道具遮挡的脸部特写。
+| 创作意图 | 经典机位参数 | 推荐焦段 | Prompt 核心表达 |
+|---|---|---|---|
+| 基准图 / 稳定展示 | 眼平，Pitch `0–5°`，Yaw `30–45°`，Roll `0°` | 50–85mm | `eye-level, three-quarter view, 50mm lens` |
+| 自然叙事与环境人像 | 眼平或微俯，Yaw `0–45°`，Roll `0°` | 28–50mm | `eye-level medium-wide shot, 35mm lens` |
+| 自信、力量、登场 | 低于眼平，向上 `5–15°` | 28–50mm | `slightly low angle, 35mm lens, grounded stance` |
+| 压迫、英雄或宏大 | 低机位，向上 `15–30°` | 18–28mm | `dramatic low-angle shot, 24mm wide-angle lens` |
+| 虫眼与史诗尺度 | 接近地面，向上 `30–60°` | 14–24mm | `worm's-eye view, extreme low angle, 18mm lens` |
+| 脆弱、孤独或观察 | 高于主体，向下 `10–35°` | 35–50mm | `high-angle shot, character small in frame` |
+| 鸟瞰与图形构图 | 高位，向下 `60–90°` | 24–50mm | `top-down view, overhead composition` |
+| 对话、窥视与关系 | 肩部高度，前景人物转向被观察者 | 35–50mm | `over-the-shoulder shot, blurred shoulder in foreground` |
+| 紧张、失衡与危险 | 依主机位，Roll `8–15°` | 24–50mm | `Dutch angle, tilted camera, tense atmosphere` |
+| 攻击、速度与冲击 | 低机位，镜头靠近动作前端，强透视缩短 | 18–28mm | `extreme foreshortening, camera close to the leading hand` |
+| 荒诞、惊恐或主观夸张 | 近距离，允许曲线畸变 | 8–16mm 鱼眼 | `fisheye lens, distorted perspective, close-up` |
+
+| 全画幅等效焦段 | 约水平视场角 | 适用取向 |
+|---:|---:|---|
+| 14–18mm | `104–90°` | 极端空间、虫眼、强动作；近距离易使脸和边缘变形 |
+| 24–28mm | `74–66°` | 广角环境人像、全身主视觉、可控的空间张力 |
+| 35mm | `54°` | 人物与环境平衡、纪实和叙事场景 |
+| 50mm | `40°` | 自然观察感、稳定人物展示 |
+| 85mm | `24°` | 肖像、情绪特写、背景压缩与脸部稳定 |
+| 135mm | `15°` | 远距观察、孤独感、舞台感与强背景压缩 |
+
+默认参数：基准图使用“眼平 + Pitch `0–5°` + Yaw `30–45°` + Roll `0°` + 50–85mm”；场景化叙事图优先使用 `28–50mm`；荷兰角只在紧张或失衡有叙事理由时使用。需要强透视缩短时，必须同时使用 18–28mm 与“镜头靠近动作前端”的距离描述。
+
+不要将三视图与鱼眼/极端广角、鸟瞰全景与微距脸部特写、稳定平视肖像与强荷兰角、全身动作设计与大面积遮挡脸部特写混入同一单图提示词。
 
 ### B. 动作、视线与环境接触
 
