@@ -1,0 +1,3 @@
+# Keep repository guidance visible on GitHub while exporting only runtime files in source archives.
+README.md export-ignore
+.gitattributes export-ignore
